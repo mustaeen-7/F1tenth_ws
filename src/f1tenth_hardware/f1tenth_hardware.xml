@@ -1,0 +1,9 @@
+<library path="f1tenth_hardware">
+  <class name="f1tenth_hardware/F1TenthHardwareInterface" 
+         type="f1tenth_hardware::F1TenthHardwareInterface" 
+         base_class_type="hardware_interface::SystemInterface">
+    <description>
+      F1TENTH ROS2 Control Hardware Interface for VESC-based F1TENTH cars
+    </description>
+  </class>
+</library>

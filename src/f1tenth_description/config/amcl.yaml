@@ -1,0 +1,64 @@
+# config/amcl.yaml - AMCL Configuration for F1Tenth
+amcl:
+  ros__parameters:
+    # Frame configuration
+    base_frame_id: "base_link"
+    odom_frame_id: "odom" 
+    global_frame_id: "map"
+    scan_topic: /scan
+    
+    # Map parameters
+    use_map_topic: true
+    first_map_only: false
+    
+    # Particle filter parameters
+    min_particles: 500
+    max_particles: 2000
+    kld_err: 0.01
+    kld_z: 0.99
+    update_min_d: 0.1           # Minimum translation before update (meters)
+    update_min_a: 0.2           # Minimum rotation before update (radians)
+    resample_interval: 1
+    transform_tolerance: 1.0
+    recovery_alpha_slow: 0.001
+    recovery_alpha_fast: 0.1
+    
+    # Initial pose parameters
+    initial_pose:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+      yaw: 0.0
+    initial_cov_xx: 0.25
+    initial_cov_yy: 0.25
+    initial_cov_aa: 0.25
+    
+    # Laser model parameters (tuned for Hokuyo)
+    laser_model_type: "likelihood_field"
+    laser_likelihood_max_dist: 2.0
+    laser_sigma_hit: 0.2
+    laser_z_hit: 0.5
+    laser_z_short: 0.05
+    laser_z_max: 0.05
+    laser_z_rand: 0.5
+    laser_lambda_short: 0.1
+    laser_max_beams: 60        # Reduce computational load
+    
+    # Odometry model parameters for F1Tenth Ackermann
+    odom_model_type: "diff"
+    odom_alpha1: 0.2           # Rotation noise from rotation
+    odom_alpha2: 0.2           # Rotation noise from translation  
+    odom_alpha3: 0.8           # Translation noise from translation
+    odom_alpha4: 0.2           # Translation noise from rotation
+    odom_alpha5: 0.1           # Translation noise (not used in diff)
+    
+    # Advanced settings
+    set_initial_pose: false
+    always_reset_initial_pose: false
+    tf_broadcast: true
+    
+    # Performance tuning
+    do_beamskip: false
+    beam_skip_distance: 0.5
+    beam_skip_threshold: 0.3
+    beam_skip_error_threshold: 0.9

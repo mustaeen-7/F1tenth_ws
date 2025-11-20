@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="f1tenth_robot">
+
+  <!-- Include the main F1TENTH description -->
+  <xacro:include filename="$(find f1tenth_description)/urdf/ros2_control/f1tenth_copy.xacro" />
+
+  <!-- ROS2 Control Hardware Interface -->
+  <ros2_control name="F1TenthHardwareSystem" type="system">
+    <hardware>
+      <plugin>f1tenth_hardware/F1TenthHardwareInterface</plugin>
+      <param name="wheel_base">0.33</param>
+      <param name="wheel_radius">0.0508</param>
+      <param name="speed_to_erpm_gain">4614</param>
+      <param name="speed_to_erpm_offset">0</param>
+      <param name="steering_angle_to_servo_gain">-1.2135</param>
+      <param name="steering_angle_to_servo_offset">0.5304</param>
+      <param name="max_speed">4.0</param>
+      <param name="max_steering_angle">0.4189</param>
+      <param name="sensor_timeout_duration">1.0</param>
+    </hardware>
+
+    <!-- All joints are state-only, actual control handled by VESC nodes -->
+    <!-- Rear wheels -->
+    <joint name="base_to_back_left_wheel">
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+
+    <joint name="base_to_back_right_wheel">
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+
+    <!-- Front steering hinges -->
+    <joint name="base_to_front_left_hinge">
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+
+    <joint name="base_to_front_right_hinge">
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+
+    <!-- Front wheels -->
+    <joint name="front_left_hinge_to_wheel">
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+
+    <joint name="front_right_hinge_to_wheel">
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+
+  </ros2_control>
+
+</robot>
