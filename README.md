@@ -287,6 +287,6 @@ This stack is designed for the [F1TENTH Autonomous Racing Competition](https://f
 
 ---
 
-**Maintainer**: niat  
+**Maintainer**: mustaeen  
 **Version**: 1.0.0  
-**Last Updated**: August 2025
+**Last Updated**: january 2025
